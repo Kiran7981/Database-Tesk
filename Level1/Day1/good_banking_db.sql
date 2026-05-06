@@ -59,3 +59,50 @@ INSERT INTO credit_cards
 VALUES
 ('C001', '4111111111111111', 'Gold', 2000000.00, '2028-12-31'),
 ('C003', '4222222222222222', 'Classic', 1000000.00, '2027-11-30');
+
+SELECT 
+c.customer_id, 
+c.customer_name, 
+c.address, 
+a.account_type, 
+a.balance, l.loan_type, 
+l.outstanding_amount, 
+cc.card_number, 
+cc.card_type 
+FROM customers c 
+LEFT JOIN accounts a 
+ON c.customer_id = a.customer_id 
+LEFT JOIN loans l 
+ON c.customer_id = l.customer_id 
+LEFT JOIN credit_cards cc 
+ON c.customer_id = cc.customer_id 
+WHERE c.customer_id = 'C001';
+
+CREATE VIEW vw_customer_banking_profile AS 
+SELECT 
+c.customer_id, 
+c.customer_name, 
+c.address, 
+c.phone, 
+a.account_id, 
+a.account_type, 
+a.balance, 
+l.loan_id, 
+l.loan_type, 
+l.loan_amount, 
+l.outstanding_amount, 
+cc.card_id, 
+cc.card_number, 
+cc.card_type, 
+cc.credit_limit 
+FROM customers c 
+LEFT JOIN accounts a 
+ON c.customer_id = a.customer_id 
+LEFT JOIN loans l 
+ON c.customer_id = l.customer_id 
+LEFT JOIN credit_cards cc 
+ON c.customer_id = cc.customer_id; 
+SELECT * FROM vw_customer_banking_profile 
+WHERE customer_id = 'C001';
+
+SELECT * FROM vw_customer_banking_profile;
