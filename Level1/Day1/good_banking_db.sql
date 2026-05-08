@@ -1,6 +1,11 @@
 CREATE DATABASE good_bankingdb;
 USE good_bankingdb;
 
+DROP TABLE IF EXISTS credit_cards;
+DROP TABLE IF EXISTS loans;
+DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS customers;
+
 CREATE TABLE customers (
     customer_id VARCHAR(20) PRIMARY KEY,
     customer_name VARCHAR(100),
